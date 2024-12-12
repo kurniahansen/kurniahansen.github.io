@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berharap THR</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .mywindow {
+            background: #ECECEC;
+            position: absolute;
+            width: 80vw;
+            max-width: 500px;
+            height: auto;
+            max-height: 240px;
+            font-size: 12pt;
+            border-radius: 10px;
+            border: 1px solid #C6C6C6;
+            box-shadow: 0px 0px 10px #00000020;
+            overflow: hidden;
+        }
+
+        .myanimated {
+            transition: all ease 0.3s;
+        }
+
+        .myhide {
+            display: none;
+        }
+
+        .mycontrol {
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        .myclose, .mymini, .mymax {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .myclose {
+            background: #FF5F57;
+        }
+
+        .mymini {
+            background: #FFBD2E;
+        }
+
+        .mymax {
+            background: #28C840;
+        }
+
+        .myheader {
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            background: #D1D1D1;
+            border-bottom: 1px solid #C6C6C6;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .mybody {
+            padding: 20px;
+        }
+
+        .mytitle {
+            font-size: 14pt;
+            margin-bottom: 10px;
+        }
+
+        .mycontent {
+            font-size: 12pt;
+            margin-bottom: 20px;
+        }
+
+        .mybutton {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .mybuttonyes, .mybuttonno {
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .mybuttonyes {
+            background: #007BFF;
+            color: white;
+        }
+
+        .mybuttonno {
+            background: white;
+            border: 1px solid #C6C6C6;
+        }
+
+        .mybuttonno:hover {
+            background: #f0f0f0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .mywindow {
+                width: 90vw;
+                max-width: none;
+                padding: 10px;
+            }
+
+            .mycontrol {
+                justify-content: space-between;
+            }
+
+            .mytitle {
+                font-size: 12pt;
+            }
+
+            .mycontent {
+                font-size: 11pt;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mywindow {
+                width: 95vw;
+                max-width: none;
+            }
+
+            .myheader {
+                font-size: 14pt;
+                padding: 8px;
+            }
+
+            .mytitle, .mycontent {
+                font-size: 10pt;
+            }
+
+            .mybuttonyes, .mybuttonno {
+                padding: 8px 16px;
+                font-size: 10pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mywindow myanimated myhide" id="mywindow">
+        <div class="mycontrol">
+            <div class="myclose" onclick="reverse()"></div>
+            <div class="mymini"></div>
+            <div class="mymax"></div>
+        </div>
+        <div class="myheader" id="mywindowheader">
+            Pesan (1)<span id="spannama"></span>
+        </div>
+        <div class="mybody">
+            <div class="mytitle">
+                Divisi manajemen :
+            </div>
+            <div class="mycontent">
+                Apakah anda puas dengan gaji anda saat ini?
+            </div>
+            <div class="mybutton">
+                <div class="mybuttonno" onmouseover="move()" onclick="move()">Tidaaakk!!</div>
+                <div class="mybuttonyes" onclick="sayYes()">Iya saya puas:)</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const myWindow = document.getElementById("mywindow");
+
+        function reverse() {
+            alert("Mengatur ulang posisi!");
+            resetPosition();
+        }
+
+        function move() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const modalWidth = myWindow.offsetWidth;
+            const modalHeight = myWindow.offsetHeight;
+
+            // Hitung posisi acak yang masih berada dalam viewport
+            const randomLeft = Math.random() * (windowWidth - modalWidth);
+            const randomTop = Math.random() * (windowHeight - modalHeight);
+
+            // Atur posisi baru
+            myWindow.style.left = `${randomLeft}px`;
+            myWindow.style.top = `${randomTop}px`;
+        }
+
+        function sayYes() {
+            Swal.fire({
+                title: "Ok lanjut kerja ya ;)",
+                text: "Tetap semangat dan jangan lupa moen-moennya",
+                imageUrl: "https://i.ibb.co/SrPXrJS/Whats-App-Image-2024-12-12-at-1-33-14-PM.jpg",
+                imageAlt: "Custom image"
+            });
+        }
+
+        function resetPosition() {
+            myWindow.style.top = "calc(50% - 120px)";
+            myWindow.style.left = "calc(50% - 250px)";
+        }
+
+        window.onload = () => {
+            myWindow.classList.remove("myhide");
+        };
+    </script>
+</body>
+</html>
