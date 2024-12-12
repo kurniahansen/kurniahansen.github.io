@@ -210,10 +210,6 @@ function sayYes() {
         title: "Ok lanjut kerja ya ;)",
         text: "Tetap semangat dan jangan lupa moen-moennya",
         imageUrl: "https://i.ibb.co.com/HdVDdXZ/Whats-App-Image-2024-12-12-at-1-33-14-PM.jpg",
-        imageAlt: "Custom image",
-        imageWidth: '100%',  // Ensure the image stretches across the available modal space
-        imageHeight: 'auto', // Maintain aspect ratio
-        imageClass: 'sweetalert-image', // Optional class for further styling
         didOpen: () => {
             const img = document.querySelector('.sweetalert-image');
             img.style.objectFit = 'contain';  // Adjust image fit
